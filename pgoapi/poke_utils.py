@@ -1,4 +1,5 @@
 import os
+import json
 
 def pokemonIVPercentage(pokemon):
     return ((pokemon.get('individual_attack', 0) + pokemon.get('individual_stamina', 0) + pokemon.get(
@@ -11,6 +12,8 @@ def get_inventory_data(res, poke_names):
     inventory_items_dict_list = map(lambda x: x.get('inventory_item_data', {}), inventory_items)
     inventory_items_pokemon_list = filter(lambda x: 'pokemon_data' in x and 'is_egg' not in x['pokemon_data'],
                                           inventory_items_dict_list)
+    with open('inventory.json','w') as outfile:
+        json.dump(inventory_items,outfile,indent=2,sort_keys=True)
 
     return (os.linesep.join(map(lambda x: "{0}, CP {1}, IV {2:.2f}".format(
         poke_names[str(x['pokemon_data']['pokemon_id'])].encode('ascii', 'ignore'),
