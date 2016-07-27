@@ -34,12 +34,12 @@ MIN_BAD_ITEM_COUNTS = {Inventory.ITEM_POKE_BALL: 50,
                        Inventory.ITEM_GREAT_BALL: 50,
                        Inventory.ITEM_ULTRA_BALL: 50,
                        Inventory.ITEM_POTION: 20,
-                       Inventory.ITEM_SUPER_POTION: 20,
-                       Inventory.ITEM_RAZZ_BERRY: 50,
-                       Inventory.ITEM_BLUK_BERRY: 10,
-                       Inventory.ITEM_NANAB_BERRY: 10,
-                       Inventory.ITEM_REVIVE: 10}
-MIN_SIMILAR_POKEMON = 1
+                       Inventory.ITEM_SUPER_POTION: 50,
+                       Inventory.ITEM_RAZZ_BERRY: 20,
+                       Inventory.ITEM_BLUK_BERRY: 20,
+                       Inventory.ITEM_NANAB_BERRY: 20,
+                       Inventory.ITEM_REVIVE: 20}
+MIN_SIMILAR_POKEMON = 3
 
 
 class PGoApi:
@@ -162,6 +162,9 @@ class PGoApi:
         steps = get_route(self._posf, loc, self.config.get("USE_GOOGLE", False), self.config.get("GMAPS_API_KEY", ""))
         for step in steps:
             for i,next_point in enumerate(get_increments(self._posf,step,self.config.get("STEP_SIZE", 200))):
+                with open('position.json','w') as outfile:
+                    json.dump(next_point,outfile,indent=2,sort_keys=True)
+
                 self.set_position(*next_point)
                 self.heartbeat()
                 self.log.info("Sleeping before next heartbeat")
@@ -201,6 +204,9 @@ class PGoApi:
     def catch_near_pokemon(self):
         map_cells = self.nearby_map_objects()['responses']['GET_MAP_OBJECTS']['map_cells']
         pokemons = PGoApi.flatmap(lambda c: c.get('catchable_pokemons', []), map_cells)
+        with open('map_cells.json','w') as outfile:
+            json.dump(map_cells,outfile,indent=2,sort_keys=True)
+
 
         # catch first pokemon:
         origin = (self._posf[0], self._posf[1])

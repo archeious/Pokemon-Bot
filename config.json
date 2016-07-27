@@ -14,16 +14,16 @@
         "RETURN_START_INTERVAL": 20
     },
     {  "auth_service": "ptc",
-        "username": "USERNAME_HERE",
-        "password": "PASSWORD_HERE",
-        "location": "Irvine, CA",
-        "USE_GOOGLE": true,
-        "GMAPS_API_KEY": "INSERT_API_KEY_HERE",
-        "MIN_KEEP_IV" : 50,
-        "KEEP_CP_OVER": 200,
-        "RELEASE_DUPLICATE": false,
+        "username": "archeious",
+        "password": "Coa15571!",
+        "location": "40.361565, -111.740317",
+        "USE_GOOGLE": false,
+        "GMAPS_API_KEY": "AIzaSyBjVn_Q0226JIp4AA0E2JhSXViQwlszIf0",
+        "MIN_KEEP_IV" : 70,
+        "KEEP_CP_OVER": 500,
+        "RELEASE_DUPLICATE": true,
         "DUPLICATE_CP_FOREGIVENESS": 0.90,
-        "STEP_SIZE": 100,
-        "RETURN_START_INTERVAL": 20
+        "STEP_SIZE": 50,
+        "RETURN_START_INTERVAL": 200
     }
     ]}

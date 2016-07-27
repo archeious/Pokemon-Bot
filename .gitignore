@@ -90,6 +90,13 @@ ENV/
 
 # Personal load details
 config.json
+inventory.json
+position.json
+catchable_pokemons.json
+map_cells.json
+botty.pid
+neighbors.json
+accounts/*
 
 .DS_Store
 data_dumps/*.json
